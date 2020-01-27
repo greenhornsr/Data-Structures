@@ -67,7 +67,9 @@ class DoublyLinkedList:
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
     def remove_from_head(self):
-        pass
+        value = self.head.value
+        self.delete(self.head)
+        return value
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -79,7 +81,7 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
         else: 
-            new_node = self.tail
+            new_node.prev = self.tail
             self.tail.next = new_node
             self.tail = new_node
 
@@ -139,3 +141,4 @@ class DoublyLinkedList:
             if current.value > max_value:
                 max_value = current.value
             current = current.next
+        return max_value
