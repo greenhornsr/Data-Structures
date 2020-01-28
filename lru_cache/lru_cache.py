@@ -13,11 +13,11 @@ class LRUCache:
     def __init__(self, limit=10):
         self.limit = limit
         # current number of nodes being held
-        self. current_num_of_nodes = None
+        self.size = 0
         # doubly linked list
         self.dbl_list = DoublyLinkedList()
         # storage ----> dictionary <----
-        self.cache_storage = None
+        self.cache_storage = {}
 
     """
     Retrieves the value associated with the given key. Also
@@ -27,9 +27,12 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-
-        return key.value
-
+        if key in self.cache_storage:
+            self.dbl_list.add_to_tail(self.cache_storage[key])
+            return self.cache_storage[key]
+        else:
+            return None
+        
     """
     Adds the given key-value pair to the cache. The newly-
     added pair should be considered the most-recently used
@@ -42,3 +45,6 @@ class LRUCache:
     """
     def set(self, key, value):
         pass
+
+# l = LRUCache()
+# print(l.get('test'))
