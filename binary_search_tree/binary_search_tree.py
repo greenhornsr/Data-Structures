@@ -4,11 +4,13 @@
 # from dll_stack import Stack
 
 """
+Binary Search Tree
         x
     x       x
 x       x       x
 """
 
+## BinarySearchTree(somevalue) creates a node at the ROOT of the BST equal to somevalue; establishing a ROOT node.
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -17,7 +19,9 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        if value < self.value:
+        if value == self.value:
+            return f"{value} is already in the tree"
+        elif value < self.value:
             if self.left:
                 self.left.insert(value)
             else:
