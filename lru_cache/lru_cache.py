@@ -26,10 +26,18 @@ class LRUCache:
     Returns the value associated with the key or None if the
     key-value pair doesn't exist in the cache.
     """
+
+    # tuple
+    '''
+    0     1
+    (key, value)
+    '''
+
     def get(self, key):
         if key in self.cache_storage:
-            self.dbl_list.add_to_tail(self.cache_storage[key])
-            return self.cache_storage[key]
+            curr_node = self.cache_storage[key]
+            self.dbl_list.move_to_end(curr_node)
+            return curr_node.value[1]
         else:
             return None
         
@@ -44,7 +52,22 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        if key in self.cache_storage:
+            node = self.cache_storage[key]
+            node.value = (key, value)
+            self.dbl_list.move_to_end(node)
+            return
+        
+        if self.size == self.limit:
+            del self.cache_storage[self.dbl_list.head.value[0]]
+            self.dbl_list.remove_from_head()
+            self.size -= 1
+
+        
+        self.dbl_list.add_to_tail((key, value))
+        self.cache_storage[key] = self.dbl_list.tail
+        self.size += 1
+
 
 # l = LRUCache()
 # print(l.get('test'))
