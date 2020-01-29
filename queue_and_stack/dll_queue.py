@@ -3,7 +3,6 @@ sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
 
-test = ListNode('testing')
 
 class Queue:
     def __init__(self):
