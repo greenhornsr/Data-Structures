@@ -48,10 +48,14 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        max = self.value 
         if self.right:
             return self.right.get_max()
-        return max
+        return self.value
+
+    # def get_max2(self):
+    #     if self.right:
+    #         return self.right.value
+    #     return self.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
@@ -65,11 +69,22 @@ class BinarySearchTree:
 
 
     # DAY 2 Project -----------------------
+    """
+    insertion order: 8, 5, 7, 6, 3, 4, 2
+                8
+            5
+        3           7
+    2       4   6
+    """
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self, node):
-        pass
+    def in_order_print(self, node=None):
+        if self.left:
+            self.left.in_order_print()
+        print(self.value)
+        if self.right:
+            self.right.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -93,4 +108,12 @@ class BinarySearchTree:
         pass
 
 
-bst = BinarySearchTree(90)
+# bst = BinarySearchTree(90)
+# bst.insert(8)
+# print(bst.in_order_print(bst))
+# bst.insert(102)
+# bst.insert(102)
+# bst.insert(88)
+# bst.insert(400)
+
+# print(bst.for_each(bst.get_max2()))
